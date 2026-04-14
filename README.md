@@ -2,21 +2,43 @@
 
 Static site: open `index.html` locally or deploy this folder to GitHub Pages.
 
-## Deploy
+**Do not share GitHub passwords or tokens in chat.** Sign in on your own machine (browser or `gh auth login`).
 
-1. Create a new repository on GitHub (e.g. `yourusername.github.io` for a user site, or any name for `https://yourusername.github.io/repo-name/`).
-2. From this folder, run:
+## Deploy (GitHub CLI — recommended)
+
+[GitHub CLI](https://cli.github.com/) (`gh`) should be available. From this folder:
 
 ```bash
-git init
-git add .
-git commit -m "Add personal site"
-git branch -M main
+cd /Users/khangmle/Downloads/Website
+gh auth login
+```
+
+Choose GitHub.com → HTTPS → authenticate via browser (or your preferred method). Then create the repo and push (pick one):
+
+**User site** (URL `https://YOUR_USERNAME.github.io/` — repo name must be `YOUR_USERNAME.github.io`):
+
+```bash
+gh repo create YOUR_USERNAME.github.io --public --source=. --remote=origin --push
+```
+
+**Project site** (URL `https://YOUR_USERNAME.github.io/REPO_NAME/`):
+
+```bash
+gh repo create REPO_NAME --public --source=. --remote=origin --push
+```
+
+Enable Pages: **Settings → Pages →** branch **main**, folder **/ (root)**. The site URL appears on that page after a short wait.
+
+## Deploy (manual)
+
+1. Create an empty repository on GitHub (website UI).
+2. Add the remote and push:
+
+```bash
 git remote add origin https://github.com/YOUR_USER/YOUR_REPO.git
 git push -u origin main
 ```
 
-3. On GitHub: **Settings → Pages → Build and deployment → Source: Deploy from a branch**, branch **main**, folder **/ (root)**.
-4. After a minute, the site URL appears on the Pages settings page.
+3. Enable Pages as above.
 
 Optional: add PDF resumes under `assets/` and link them from `index.html`.
