@@ -1,0 +1,927 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="description" content="Khang Le — product, engineering, and projects at the intersection of PM and SWE." />
+<title>Khang Le — Product & Engineering</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet" />
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #fafaf8;
+    --surface: #ffffff;
+    --border: rgba(0,0,0,0.08);
+    --border-med: rgba(0,0,0,0.13);
+    --text: #111110;
+    --muted: #6b6b67;
+    --subtle: #9b9b96;
+    --accent: #1a1a1a;
+    --green: #2d7a4f;
+    --green-light: #edf7f1;
+    --tag-bg: #f2f2ef;
+    --tag-text: #4a4a47;
+    --font-sans: 'DM Sans', sans-serif;
+    --font-serif: 'DM Serif Display', serif;
+    --radius: 12px;
+    --radius-sm: 8px;
+    --max: 860px;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #0e0e0d;
+      --surface: #1a1a18;
+      --border: rgba(255,255,255,0.08);
+      --border-med: rgba(255,255,255,0.13);
+      --text: #f0f0ed;
+      --muted: #9b9b96;
+      --subtle: #6b6b67;
+      --accent: #e8e8e3;
+      --green: #4aba7a;
+      --green-light: #0e2318;
+      --tag-bg: #252522;
+      --tag-text: #b0b0ab;
+    }
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--font-sans);
+    background: var(--bg);
+    color: var(--text);
+    font-size: 16px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  a { color: inherit; text-decoration: none; }
+
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: color-mix(in srgb, var(--bg) 85%, transparent);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border);
+  }
+
+  nav .inner {
+    max-width: var(--max);
+    margin: 0 auto;
+    padding: 0 2rem;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  nav .logo {
+    font-family: var(--font-serif);
+    font-size: 17px;
+    letter-spacing: -0.01em;
+  }
+
+  nav .logo a { color: var(--text); }
+
+  nav ul {
+    list-style: none;
+    display: flex;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+  }
+
+  nav ul a {
+    font-size: 13px;
+    color: var(--muted);
+    transition: color 0.2s;
+    font-weight: 400;
+  }
+
+  nav ul a:hover { color: var(--text); }
+
+  section {
+    max-width: var(--max);
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  #home.hero {
+    padding-top: 128px;
+    padding-bottom: 96px;
+  }
+
+  .hero-eyebrow {
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--green);
+    margin-bottom: 1.25rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .hero-eyebrow::before {
+    content: '';
+    display: inline-block;
+    width: 20px;
+    height: 1.5px;
+    background: var(--green);
+    flex-shrink: 0;
+  }
+
+  .hero h1 {
+    font-family: var(--font-serif);
+    font-size: clamp(2.6rem, 5vw, 3.8rem);
+    font-weight: 400;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    margin-bottom: 1.5rem;
+    max-width: 680px;
+  }
+
+  .hero h1 em {
+    font-style: italic;
+    color: var(--muted);
+  }
+
+  .hero-desc {
+    font-size: 18px;
+    color: var(--muted);
+    max-width: 520px;
+    line-height: 1.7;
+    margin-bottom: 2.5rem;
+    font-weight: 300;
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 10px 20px;
+    border-radius: 100px;
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.2s;
+    cursor: pointer;
+    border: none;
+    font-family: var(--font-sans);
+  }
+
+  .btn-primary {
+    background: var(--text);
+    color: var(--bg);
+  }
+
+  .btn-primary:hover { opacity: 0.82; }
+
+  .btn-secondary {
+    background: transparent;
+    color: var(--text);
+    border: 1px solid var(--border-med);
+  }
+
+  .btn-secondary:hover { background: var(--surface); }
+
+  .hero-tags {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-top: 3rem;
+    padding-top: 3rem;
+    border-top: 1px solid var(--border);
+  }
+
+  .tag {
+    font-size: 12.5px;
+    padding: 5px 12px;
+    border-radius: 100px;
+    background: var(--tag-bg);
+    color: var(--tag-text);
+    font-weight: 400;
+  }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 2.5rem;
+    padding-top: 80px;
+  }
+
+  .section-header h2 {
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--subtle);
+    white-space: nowrap;
+  }
+
+  .section-header::after {
+    content: '';
+    display: block;
+    height: 1px;
+    background: var(--border);
+    flex: 1;
+  }
+
+  .about-lede {
+    font-size: 18px;
+    color: var(--muted);
+    font-weight: 300;
+    line-height: 1.75;
+    max-width: 640px;
+    margin-bottom: 2rem;
+  }
+
+  .about-body {
+    font-size: 15px;
+    color: var(--muted);
+    line-height: 1.75;
+    max-width: 640px;
+    margin-bottom: 3rem;
+  }
+
+  .about-body strong { color: var(--text); font-weight: 500; }
+
+  .life-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 16px;
+    margin-bottom: 80px;
+  }
+
+  .life-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.5rem;
+    transition: border-color 0.2s;
+  }
+
+  .life-card:hover { border-color: var(--border-med); }
+
+  .life-card h3 {
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 8px;
+    color: var(--text);
+  }
+
+  .life-card p {
+    font-size: 14px;
+    color: var(--muted);
+    line-height: 1.65;
+  }
+
+  .exp-list { display: flex; flex-direction: column; gap: 2px; }
+
+  .exp-item {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: start;
+    gap: 1.5rem;
+    padding: 1.5rem;
+    border-radius: var(--radius);
+    transition: background 0.15s;
+    cursor: default;
+  }
+
+  .exp-item:hover { background: var(--surface); }
+
+  .exp-role {
+    font-size: 15px;
+    font-weight: 500;
+    margin-bottom: 3px;
+    color: var(--text);
+  }
+
+  .exp-company {
+    font-size: 14px;
+    color: var(--muted);
+    margin-bottom: 10px;
+  }
+
+  .exp-company strong {
+    color: var(--text);
+    font-weight: 500;
+  }
+
+  .exp-bullets {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  .exp-bullets li {
+    font-size: 14px;
+    color: var(--muted);
+    line-height: 1.6;
+    padding-left: 1rem;
+    position: relative;
+  }
+
+  .exp-bullets li::before {
+    content: '—';
+    position: absolute;
+    left: 0;
+    color: var(--subtle);
+    font-size: 12px;
+    top: 2px;
+  }
+
+  .exp-date {
+    font-size: 12.5px;
+    color: var(--subtle);
+    white-space: nowrap;
+    padding-top: 2px;
+    font-weight: 400;
+  }
+
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 16px;
+    margin-bottom: 48px;
+  }
+
+  .project-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.5rem;
+    transition: border-color 0.2s, transform 0.2s;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .project-card:hover {
+    border-color: var(--border-med);
+    transform: translateY(-2px);
+  }
+
+  .project-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: var(--radius-sm);
+    background: var(--green-light);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 4px;
+  }
+
+  .project-icon svg { width: 18px; height: 18px; }
+
+  .project-name {
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--text);
+  }
+
+  .project-desc {
+    font-size: 13.5px;
+    color: var(--muted);
+    line-height: 1.6;
+    flex: 1;
+  }
+
+  .project-tags {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    margin-top: 4px;
+  }
+
+  .project-tag {
+    font-size: 11.5px;
+    padding: 3px 9px;
+    border-radius: 100px;
+    background: var(--tag-bg);
+    color: var(--tag-text);
+  }
+
+  .project-link {
+    font-size: 12.5px;
+    color: var(--green);
+    font-weight: 500;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    margin-top: 4px;
+  }
+
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 12px;
+    margin-bottom: 48px;
+  }
+
+  .skill-group {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.25rem;
+  }
+
+  .skill-group-label {
+    font-size: 11.5px;
+    font-weight: 500;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    color: var(--subtle);
+    margin-bottom: 10px;
+  }
+
+  .skill-items {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .skill-pill {
+    font-size: 12.5px;
+    padding: 4px 10px;
+    border-radius: 100px;
+    border: 1px solid var(--border);
+    color: var(--muted);
+    background: var(--bg);
+  }
+
+  .edu-list { display: flex; flex-direction: column; gap: 2px; margin-bottom: 80px; }
+
+  .edu-item {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: start;
+    gap: 1.5rem;
+    padding: 1.5rem;
+    border-radius: var(--radius);
+    transition: background 0.15s;
+  }
+
+  .edu-item:hover { background: var(--surface); }
+
+  .edu-school {
+    font-size: 15px;
+    font-weight: 500;
+    margin-bottom: 3px;
+  }
+
+  .edu-degree {
+    font-size: 14px;
+    color: var(--muted);
+    margin-bottom: 8px;
+  }
+
+  .edu-courses {
+    font-size: 13px;
+    color: var(--subtle);
+    line-height: 1.6;
+  }
+
+  .contact-section {
+    border-top: 1px solid var(--border);
+    padding: 80px 2rem;
+    max-width: var(--max);
+    margin: 0 auto;
+  }
+
+  .contact-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 2rem;
+    flex-wrap: wrap;
+  }
+
+  .contact-left h2 {
+    font-family: var(--font-serif);
+    font-size: clamp(1.6rem, 3vw, 2.2rem);
+    font-weight: 400;
+    margin-bottom: 8px;
+    letter-spacing: -0.01em;
+  }
+
+  .contact-left p {
+    font-size: 15px;
+    color: var(--muted);
+    max-width: 380px;
+  }
+
+  .contact-links {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: flex-end;
+  }
+
+  .contact-link {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    color: var(--muted);
+    transition: color 0.2s;
+    font-weight: 400;
+  }
+
+  .contact-link:hover { color: var(--text); }
+
+  .contact-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--green);
+    flex-shrink: 0;
+  }
+
+  footer {
+    text-align: center;
+    padding: 1.5rem 2rem 2.5rem;
+    font-size: 12.5px;
+    color: var(--subtle);
+    border-top: 1px solid var(--border);
+  }
+
+  .fade-in {
+    opacity: 0;
+    transform: translateY(16px);
+    transition: opacity 0.55s ease, transform 0.55s ease;
+  }
+
+  .fade-in.visible {
+    opacity: 1;
+    transform: none;
+  }
+
+  @media (max-width: 600px) {
+    nav .inner { padding: 0 1.25rem; }
+    nav ul { gap: 0.75rem 1rem; }
+    section { padding: 0 1.25rem; }
+    #home.hero { padding-top: 100px; padding-bottom: 64px; }
+    .exp-item { grid-template-columns: 1fr; gap: 4px; }
+    .edu-item { grid-template-columns: 1fr; }
+    .contact-links { align-items: flex-start; }
+    .contact-section { padding: 64px 1.25rem; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="inner">
+    <span class="logo"><a href="#home">Khang Le</a></span>
+    <ul>
+      <li><a href="#home">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#works">Works</a></li>
+      <li><a href="#life">Life</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<section id="home" class="hero fade-in">
+  <div class="hero-eyebrow">Penn SEAS · MS Computer Science</div>
+  <h1>Building products <em>at the edge of</em> engineering and design.</h1>
+  <p class="hero-desc">I'm Khang — I work across product and engineering: shipping features, shaping roadmaps, and writing the code that makes ideas real.</p>
+  <div class="hero-actions">
+    <a href="mailto:khang16le@gmail.com" class="btn btn-primary">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="2,4 12,14 22,4"/></svg>
+      Get in touch
+    </a>
+    <a href="https://www.linkedin.com/in/khangmle" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">LinkedIn ↗</a>
+    <a href="https://github.com/khangmle" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">GitHub ↗</a>
+  </div>
+  <div class="hero-tags">
+    <span class="tag">Product</span>
+    <span class="tag">Software Engineering</span>
+    <span class="tag">Search &amp; Ranking</span>
+    <span class="tag">Full-Stack</span>
+    <span class="tag">iOS</span>
+    <span class="tag">Machine Learning</span>
+  </div>
+</section>
+
+<section id="about">
+  <div class="section-header"><h2>About</h2></div>
+  <p class="about-lede fade-in">I blend a business foundation with a technical graduate path — from Cornell to a Penn MS in Computer Science — so I can own problems end-to-end: discovery, prioritization, and delivery.</p>
+  <div class="about-body fade-in">
+    <p>Professionally, I sit in the overlap of <strong>PM and SWE</strong>: I've led cross-functional teams and roadmaps, and I've architected apps, APIs, and ML-adjacent systems that ship to real users. I'm especially drawn to <strong>search, ranking, and recommenders</strong>, and to products where craft in the UI meets rigor in the data model.</p>
+    <p style="margin-top:1rem;">Outside of class and work, I recharge through tennis, food, and building communities — the same curiosity that drives product work shows up in how I spend downtime.</p>
+  </div>
+
+  <div class="section-header" style="padding-top: 0;"><h2>Education</h2></div>
+  <div class="edu-list">
+    <div class="edu-item fade-in">
+      <div>
+        <div class="edu-school">University of Pennsylvania, SEAS</div>
+        <div class="edu-degree">Master of Computer Science (STEM) · GPA: 3.7 · Expected 2027</div>
+        <div class="edu-courses">NLP · AI · Algorithms &amp; Computation · Data Structures · Computer Systems · Engineering Product Management · Software Development · Discrete Mathematics</div>
+        <div style="margin-top:10px; display:flex; gap:8px; flex-wrap:wrap;">
+          <span class="tag">UPenn Hackathon — Winner</span>
+          <span class="tag">Wharton Venture Lab</span>
+          <span class="tag">AI &amp; Analytics Club</span>
+          <span class="tag">Wharton Consulting Club</span>
+        </div>
+      </div>
+      <div class="exp-date">Philadelphia</div>
+    </div>
+    <div class="edu-item fade-in">
+      <div>
+        <div class="edu-school">Cornell University, Johnson College of Business</div>
+        <div class="edu-degree">Bachelor of Business Administration · Minor in Law · Dean's List · 2019 – 2023</div>
+        <div class="edu-courses">Quantitative Analysis · Microeconomics · Strategy · Finance · Financial &amp; Managerial Accounting · Constitutional &amp; Competition Law</div>
+        <div style="margin-top:10px; display:flex; gap:8px; flex-wrap:wrap;">
+          <span class="tag">Cornell Trading Club — President</span>
+        </div>
+      </div>
+      <div class="exp-date">Ithaca</div>
+    </div>
+  </div>
+</section>
+
+<section id="works">
+  <div class="section-header"><h2>Experience</h2></div>
+  <div class="exp-list">
+
+    <div class="exp-item fade-in">
+      <div>
+        <div class="exp-role">Software Engineer &amp; Technical Product Manager</div>
+        <div class="exp-company"><strong>Develop For Good</strong> · Remote, US</div>
+        <ul class="exp-bullets">
+          <li>Shipped 15+ production features on a web platform — donation workflows, analytics dashboards, responsive UI — while coordinating roadmap, design, and accessibility with an 8-person cross-functional team</li>
+          <li>Architected alongside a small engineering team: translating hi-fi designs into production code and scalable form-based systems</li>
+        </ul>
+      </div>
+      <div class="exp-date">Oct 2025 – Present</div>
+    </div>
+
+    <div class="exp-item fade-in">
+      <div>
+        <div class="exp-role">Founder · Lead Engineer &amp; Product</div>
+        <div class="exp-company"><strong>PlateDrop</strong> · iOS marketplace · Philadelphia, PA · Live on App Store</div>
+        <ul class="exp-bullets">
+          <li>Built and grew a two-sided meal-sharing app: real-time order tracking, inventory sync, and transactional backend logic with per-user isolation via Supabase Row-Level Security</li>
+          <li>Improved onboarding and engagement through UX iteration and testing; automated CI/CD (GitHub Actions, Expo EAS) for faster, stable releases</li>
+        </ul>
+      </div>
+      <div class="exp-date">May 2025 – Present</div>
+    </div>
+
+    <div class="exp-item fade-in">
+      <div>
+        <div class="exp-role">Software Engineer &amp; Associate Product Manager</div>
+        <div class="exp-company"><strong>Vigic</strong> · Health tech · Los Angeles, CA</div>
+        <ul class="exp-bullets">
+          <li>Delivered a full-stack performance dashboard for 100+ athletes and coaches; integrated training, nutrition, and wearable data</li>
+          <li>Shipped a validated MVP in four sprints, REST APIs for vendors, and UX improvements that moved adoption and retention metrics</li>
+        </ul>
+      </div>
+      <div class="exp-date">Jan – May 2024</div>
+    </div>
+
+    <div class="exp-item fade-in">
+      <div>
+        <div class="exp-role">Consulting Summer Analyst</div>
+        <div class="exp-company"><strong>PwC</strong> · Ho Chi Minh City, VN</div>
+        <ul class="exp-bullets">
+          <li>Designed AI-driven sales workflows and an automated document translation system that cut manual processing time sharply at scale</li>
+          <li>Modeled renewable energy portfolios supporting investment recommendations across Southeast Asia</li>
+        </ul>
+      </div>
+      <div class="exp-date">Jul – Sep 2022</div>
+    </div>
+
+    <div class="exp-item fade-in">
+      <div>
+        <div class="exp-role">Private Chef &amp; Culinary Operator</div>
+        <div class="exp-company"><strong>Independent</strong> · Los Angeles, CA</div>
+        <ul class="exp-bullets">
+          <li>Ran private dining end-to-end: menus, sourcing, pricing, and service — a hands-on practice in taste, timing, and client expectations</li>
+        </ul>
+      </div>
+      <div class="exp-date">Aug 2023 – May 2024</div>
+    </div>
+
+  </div>
+
+  <div class="section-header"><h2>Projects</h2></div>
+  <div class="projects-grid">
+
+    <div class="project-card fade-in">
+      <div class="project-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#2d7a4f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+      </div>
+      <div class="project-name">PlateDrop</div>
+      <div class="project-desc">Live iOS marketplace for students sharing homemade meals — full-stack product you can download today.</div>
+      <div class="project-tags">
+        <span class="project-tag">React Native</span>
+        <span class="project-tag">Supabase</span>
+        <span class="project-tag">Expo</span>
+      </div>
+      <a href="#" class="project-link" title="Replace with your App Store URL">App Store ↗</a>
+    </div>
+
+    <div class="project-card fade-in">
+      <div class="project-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#2d7a4f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+      </div>
+      <div class="project-name">Reddit Recommender</div>
+      <div class="project-desc">Neural collaborative filtering at Reddit scale — evaluated on 180K users and 2K subreddits (HR@10, NDCG@10).</div>
+      <div class="project-tags">
+        <span class="project-tag">PyTorch</span>
+        <span class="project-tag">NLP</span>
+        <span class="project-tag">Ranking</span>
+      </div>
+    </div>
+
+    <div class="project-card fade-in">
+      <div class="project-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#2d7a4f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/><circle cx="5" cy="12" r="1"/></svg>
+      </div>
+      <div class="project-name">UPenn Hackathon — 1st Place</div>
+      <div class="project-desc">Chrome extension (React &amp; Java) lifting session engagement; First Place &amp; Most Innovative Solution.</div>
+      <div class="project-tags">
+        <span class="project-tag">React</span>
+        <span class="project-tag">Java</span>
+        <span class="project-tag">Chrome APIs</span>
+      </div>
+      <a href="#" class="project-link" title="Replace with demo or repo URL">Demo ↗</a>
+    </div>
+
+    <div class="project-card fade-in">
+      <div class="project-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#2d7a4f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9,22 9,12 15,12 15,22"/></svg>
+      </div>
+      <div class="project-name">Memento</div>
+      <div class="project-desc">Digital legacy concept: organize media and journals; AI curates a meaningful memorial.</div>
+      <div class="project-tags">
+        <span class="project-tag">AI</span>
+        <span class="project-tag">Product design</span>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="section-header"><h2>Skills</h2></div>
+  <div class="skills-grid">
+
+    <div class="skill-group fade-in">
+      <div class="skill-group-label">Languages</div>
+      <div class="skill-items">
+        <span class="skill-pill">Python</span>
+        <span class="skill-pill">JavaScript</span>
+        <span class="skill-pill">TypeScript</span>
+        <span class="skill-pill">Java</span>
+        <span class="skill-pill">C/C++</span>
+        <span class="skill-pill">SQL</span>
+        <span class="skill-pill">HTML/CSS</span>
+      </div>
+    </div>
+
+    <div class="skill-group fade-in">
+      <div class="skill-group-label">Frontend</div>
+      <div class="skill-items">
+        <span class="skill-pill">React</span>
+        <span class="skill-pill">React Native</span>
+        <span class="skill-pill">Next.js</span>
+        <span class="skill-pill">Expo</span>
+      </div>
+    </div>
+
+    <div class="skill-group fade-in">
+      <div class="skill-group-label">Backend &amp; data</div>
+      <div class="skill-items">
+        <span class="skill-pill">Node.js</span>
+        <span class="skill-pill">FastAPI</span>
+        <span class="skill-pill">REST</span>
+        <span class="skill-pill">PostgreSQL</span>
+        <span class="skill-pill">Supabase</span>
+        <span class="skill-pill">Firebase</span>
+      </div>
+    </div>
+
+    <div class="skill-group fade-in">
+      <div class="skill-group-label">ML &amp; evaluation</div>
+      <div class="skill-items">
+        <span class="skill-pill">PyTorch</span>
+        <span class="skill-pill">TensorFlow</span>
+        <span class="skill-pill">NumPy</span>
+        <span class="skill-pill">NLP</span>
+      </div>
+    </div>
+
+    <div class="skill-group fade-in">
+      <div class="skill-group-label">Shipping</div>
+      <div class="skill-items">
+        <span class="skill-pill">Git</span>
+        <span class="skill-pill">Docker</span>
+        <span class="skill-pill">CI/CD</span>
+        <span class="skill-pill">GitHub Actions</span>
+        <span class="skill-pill">Figma</span>
+        <span class="skill-pill">JUnit</span>
+      </div>
+    </div>
+
+    <div class="skill-group fade-in">
+      <div class="skill-group-label">Product</div>
+      <div class="skill-items">
+        <span class="skill-pill">A/B testing</span>
+        <span class="skill-pill">Agile</span>
+        <span class="skill-pill">Roadmapping</span>
+        <span class="skill-pill">Metrics</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section id="life">
+  <div class="section-header"><h2>Life</h2></div>
+  <p class="about-body fade-in" style="margin-bottom: 1.5rem;">Coding isn't the whole story. A few things that keep me grounded and feed how I think about people and products.</p>
+  <div class="life-grid">
+    <div class="life-card fade-in">
+      <h3>Tennis</h3>
+      <p>Competition and rhythm on court — similar to shipping: preparation, focus, and adapting point by point.</p>
+    </div>
+    <div class="life-card fade-in">
+      <h3>Food &amp; hospitality</h3>
+      <p>From running private dinners to obsessing over menus: hospitality is product work with flavor — pacing, surprise, and care.</p>
+    </div>
+    <div class="life-card fade-in">
+      <h3>Communities</h3>
+      <p>Wharton Venture Lab, consulting and analytics clubs, and building alongside peers — I like teams that debate well and ship anyway.</p>
+    </div>
+    <div class="life-card fade-in">
+      <h3>Building in public</h3>
+      <p>Hackathons and side projects are where I test ideas fast — whether it's a recommender system or a browser extension.</p>
+    </div>
+  </div>
+</section>
+
+<div class="contact-section" id="contact">
+  <div class="contact-inner">
+    <div class="contact-left fade-in">
+      <h2>Let's work together.</h2>
+      <p>Open to product and engineering roles where ownership spans discovery and delivery.</p>
+      <div style="margin-top:1.5rem;">
+        <a href="mailto:khang16le@gmail.com" class="btn btn-primary">khang16le@gmail.com</a>
+      </div>
+    </div>
+    <div class="contact-links fade-in">
+      <a href="https://www.linkedin.com/in/khangmle" target="_blank" rel="noopener noreferrer" class="contact-link">
+        <span class="contact-dot"></span> linkedin.com/in/khangmle
+      </a>
+      <a href="https://github.com/khangmle" target="_blank" rel="noopener noreferrer" class="contact-link">
+        <span class="contact-dot"></span> github.com/khangmle
+      </a>
+      <a href="tel:+13017329991" class="contact-link">
+        <span class="contact-dot"></span> (301) 732-9991
+      </a>
+      <span class="contact-link" style="cursor: default;">
+        <span class="contact-dot"></span> Philadelphia, PA
+      </span>
+    </div>
+  </div>
+</div>
+
+<footer>
+  © 2026 Khang Le
+</footer>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.08 });
+
+  document.querySelectorAll('.fade-in').forEach((el, i) => {
+    el.style.transitionDelay = (i < 6 ? i * 0.05 : 0) + 's';
+    observer.observe(el);
+  });
+</script>
+
+</body>
+</html>
