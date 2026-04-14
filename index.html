@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<meta name="description" content="Khang Le — product, engineering, and projects at the intersection of PM and SWE." />
+<meta name="description" content="Khang Le — MCIT at Penn. Product, engineering, and full-stack development with real-world impact." />
 <title>Khang Le — Product & Engineering</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -115,6 +115,62 @@
     padding-bottom: 96px;
   }
 
+  .hero-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(220px, 300px);
+    gap: 3rem;
+    align-items: start;
+  }
+
+  .hero-main { min-width: 0; }
+
+  .hero-photo-wrap {
+    position: relative;
+    border-radius: 20px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    box-shadow: 0 24px 48px rgba(0,0,0,0.08);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    .hero-photo-wrap {
+      box-shadow: 0 24px 48px rgba(0,0,0,0.45);
+    }
+  }
+
+  .hero-photo-wrap img {
+    display: block;
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    aspect-ratio: 4 / 5;
+  }
+
+  .hero-sub {
+    font-size: clamp(1.15rem, 2.2vw, 1.35rem);
+    color: var(--muted);
+    font-weight: 400;
+    line-height: 1.45;
+    margin-bottom: 1.75rem;
+    max-width: 36em;
+  }
+
+  .hero-intro {
+    display: flex;
+    flex-direction: column;
+    gap: 1.1rem;
+    margin-bottom: 2.25rem;
+    max-width: 38em;
+  }
+
+  .hero-intro p {
+    font-size: 16px;
+    color: var(--muted);
+    font-weight: 300;
+    line-height: 1.75;
+  }
+
   .hero-eyebrow {
     font-size: 13px;
     font-weight: 500;
@@ -138,26 +194,17 @@
 
   .hero h1 {
     font-family: var(--font-serif);
-    font-size: clamp(2.6rem, 5vw, 3.8rem);
+    font-size: clamp(2.25rem, 4.5vw, 3.25rem);
     font-weight: 400;
-    line-height: 1.1;
+    line-height: 1.12;
     letter-spacing: -0.02em;
-    margin-bottom: 1.5rem;
-    max-width: 680px;
+    margin-bottom: 0.75rem;
+    max-width: 16ch;
   }
 
   .hero h1 em {
     font-style: italic;
     color: var(--muted);
-  }
-
-  .hero-desc {
-    font-size: 18px;
-    color: var(--muted);
-    max-width: 520px;
-    line-height: 1.7;
-    margin-bottom: 2.5rem;
-    font-weight: 300;
   }
 
   .hero-actions {
@@ -571,6 +618,19 @@
     transform: none;
   }
 
+  @media (max-width: 720px) {
+    .hero-grid {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+    .hero-photo-wrap {
+      max-width: 280px;
+      margin: 0 auto;
+      order: -1;
+    }
+    .hero h1 { max-width: none; }
+  }
+
   @media (max-width: 600px) {
     nav .inner { padding: 0 1.25rem; }
     nav ul { gap: 0.75rem 1rem; }
@@ -599,24 +659,35 @@
 </nav>
 
 <section id="home" class="hero fade-in">
-  <div class="hero-eyebrow">Penn SEAS · MS Computer Science</div>
-  <h1>Building products <em>at the edge of</em> engineering and design.</h1>
-  <p class="hero-desc">I'm Khang — I work across product and engineering: shipping features, shaping roadmaps, and writing the code that makes ideas real.</p>
-  <div class="hero-actions">
-    <a href="mailto:khang16le@gmail.com" class="btn btn-primary">
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="2,4 12,14 22,4"/></svg>
-      Get in touch
-    </a>
-    <a href="https://www.linkedin.com/in/khangmle" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">LinkedIn ↗</a>
-    <a href="https://github.com/khangmle" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">GitHub ↗</a>
-  </div>
-  <div class="hero-tags">
-    <span class="tag">Product</span>
-    <span class="tag">Software Engineering</span>
-    <span class="tag">Search &amp; Ranking</span>
-    <span class="tag">Full-Stack</span>
-    <span class="tag">iOS</span>
-    <span class="tag">Machine Learning</span>
+  <div class="hero-grid">
+    <div class="hero-main">
+      <div class="hero-eyebrow">University of Pennsylvania · MCIT</div>
+      <h1>Hi, I'm Khang Le</h1>
+      <p class="hero-sub">A Master's student in Computer and Information Technology at the University of Pennsylvania.</p>
+      <div class="hero-intro">
+        <p>I build at the intersection of technology, product, and real-world impact. With experience across software engineering, data analytics, and product development, I enjoy turning ideas into scalable, user-focused solutions. I've worked on projects ranging from full-stack applications and AI-powered tools to marketplace platforms like PlateDrop, where I focus on creating meaningful experiences for real users.</p>
+        <p>Before grad school, I worked at PwC where I developed data-driven solutions that improved operational efficiency and supported large-scale financial decisions. Now, I'm focused on becoming a full-stack engineer who can own problems end to end, combining strong technical execution with product intuition.</p>
+      </div>
+      <div class="hero-actions">
+        <a href="mailto:khang16le@gmail.com" class="btn btn-primary">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="2,4 12,14 22,4"/></svg>
+          Get in touch
+        </a>
+        <a href="https://www.linkedin.com/in/khangmle" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">LinkedIn ↗</a>
+        <a href="https://github.com/KhangMLe165" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">GitHub ↗</a>
+      </div>
+      <div class="hero-tags">
+        <span class="tag">Product</span>
+        <span class="tag">Software engineering</span>
+        <span class="tag">Data analytics</span>
+        <span class="tag">Full-stack</span>
+        <span class="tag">PlateDrop</span>
+        <span class="tag">AI &amp; ML</span>
+      </div>
+    </div>
+    <div class="hero-photo-wrap">
+      <img src="assets/khang-headshot.png" alt="Portrait of Khang Le" width="600" height="750" loading="eager" />
+    </div>
   </div>
 </section>
 
@@ -890,8 +961,8 @@
       <a href="https://www.linkedin.com/in/khangmle" target="_blank" rel="noopener noreferrer" class="contact-link">
         <span class="contact-dot"></span> linkedin.com/in/khangmle
       </a>
-      <a href="https://github.com/khangmle" target="_blank" rel="noopener noreferrer" class="contact-link">
-        <span class="contact-dot"></span> github.com/khangmle
+      <a href="https://github.com/KhangMLe165" target="_blank" rel="noopener noreferrer" class="contact-link">
+        <span class="contact-dot"></span> github.com/KhangMLe165
       </a>
       <a href="tel:+13017329991" class="contact-link">
         <span class="contact-dot"></span> (301) 732-9991
